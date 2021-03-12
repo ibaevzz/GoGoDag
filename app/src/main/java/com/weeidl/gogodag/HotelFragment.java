@@ -22,7 +22,7 @@ public class HotelFragment extends Fragment {
 
         hotels = new ArrayList<RecentsData>();
 
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 5, R.drawable.hotel11, R.drawable.hotel11));
+        hotels.add(new RecentsData("Hotel", "", null, "здесь может быть ваша реклама", 5, R.drawable.hotel11, R.drawable.hotel11));
         hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 4, R.drawable.hotel12, R.drawable.hotel11));
         hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 3, R.drawable.hotel21, R.drawable.hotel11));
         hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 2, R.drawable.hotel22, R.drawable.hotel11));
