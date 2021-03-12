@@ -7,7 +7,7 @@
         android:id="@+id/home"
         android:icon="@drawable/home"
         android:title="Home"
-        app:cnb_backgroundColor="#FF9493"
+        app:cnb_backgroundColor="@color/pink"
         app:cnb_iconColor="#ffffff"
         app:cnb_textColor="#ffffff" />
 

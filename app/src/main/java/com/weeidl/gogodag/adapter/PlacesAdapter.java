@@ -3,6 +3,7 @@ package com.weeidl.gogodag.adapter;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -60,6 +61,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
             intent.putIntegerArrayListExtra("image", (ArrayList<Integer>) ((RecentsData)places.get(position)).getImageUrls());
             intent.putExtra("text", placeName.getText());
             intent.putExtra("description", ((RecentsData) places.get(position)).getDescription());
+            intent.putExtra("color", R.color.pink);
             MainActivity.activity.startActivity(intent, bundle);
         });
     }

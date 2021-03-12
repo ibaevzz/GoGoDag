@@ -54,7 +54,6 @@ public class HotelFragment extends Fragment {
         hotels_rv = view.findViewById(R.id.hotels);
         manager = new GridLayoutManager(view.getContext(), 2);
         adapter = new HotelAdapter(view.getContext(), hotels);
-
         hotels_rv.setLayoutManager(manager);
         hotels_rv.setAdapter(adapter);
 

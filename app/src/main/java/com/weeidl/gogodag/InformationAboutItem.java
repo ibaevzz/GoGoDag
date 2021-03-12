@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.weeidl.gogodag.adapter.ImageViewPagerAdapter;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class InformationAboutItem extends AppCompatActivity {
 
@@ -27,6 +28,7 @@ public class InformationAboutItem extends AppCompatActivity {
         Toolbar toolbar;
         CollapsingToolbarLayout ctb;
         ArrayList<Integer> images;
+        int color;
 
         intent = getIntent();
         face = ResourcesCompat.getFont(this, R.font.jura);
@@ -35,16 +37,17 @@ public class InformationAboutItem extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         ctb = findViewById(R.id.ctb);
         images = intent.getIntegerArrayListExtra("image");
+        color = intent.getIntExtra("color", 0);
 
         image.setAdapter(new ImageViewPagerAdapter(this, images));
         description.setText(getIntent().getStringExtra("description"));
         ctb.setExpandedTitleColor(Color.WHITE);
         ctb.setCollapsedTitleTypeface(face);
         ctb.setExpandedTitleTypeface(face);
-        ctb.setContentScrimColor(Color.rgb(255, 142, 145));
+        ctb.setContentScrimColor(getResources().getColor(color));
         toolbar.setTitle(getIntent().getStringExtra("text"));
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 

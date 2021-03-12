@@ -81,6 +81,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
             intent.putIntegerArrayListExtra("image", (ArrayList<Integer>) hotelData.getImageUrls());
             intent.putExtra("text", hotelData.getPlaceName());
             intent.putExtra("description", hotelData.getDescription());
+            intent.putExtra("color", R.color.blue);
 
             MainActivity.activity.startActivity(intent, bundle);
         });
