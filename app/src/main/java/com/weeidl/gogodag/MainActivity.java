@@ -2,15 +2,17 @@ package com.weeidl.gogodag;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import android.app.Activity;
 import android.os.Bundle;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ChipNavigationBar chipNavigationBar;
+    public static ChipNavigationBar chipNavigationBar;
     private Fragment fragment=null;
     public static Activity activity;
+    public static FragmentManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +21,10 @@ public class MainActivity extends AppCompatActivity {
 
         activity = this;
 
+        manager = getSupportFragmentManager();
+
         fragment = new HomeFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).commit();
+        manager.beginTransaction().replace(R.id.container,fragment).commit();
 
         chipNavigationBar = findViewById(R.id.chipNavigation);
 
@@ -42,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             if (fragment!=null){
-                getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).commit();
+                manager.beginTransaction().replace(R.id.container,fragment).commit();
             }
         });
 

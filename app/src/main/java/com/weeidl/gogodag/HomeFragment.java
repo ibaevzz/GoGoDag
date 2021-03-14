@@ -27,6 +27,9 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
+        view.findViewById(R.id.button_hotel).setOnClickListener(v -> {
+            MainActivity.manager.beginTransaction().replace(R.id.container, new HotelFragment()).commit();
+        });
         return view;
     }
 

@@ -75,7 +75,7 @@
                 android:layout_below="@+id/textView3">
 
                 <Button
-                    android:id="@+id/buttom_one"
+                    android:id="@+id/button_hotel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
