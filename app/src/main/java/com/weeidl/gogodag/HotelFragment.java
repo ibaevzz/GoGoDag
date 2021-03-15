@@ -4,9 +4,13 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+
 import com.weeidl.gogodag.adapter.HotelAdapter;
 import com.weeidl.gogodag.model.RecentsData;
 import java.util.ArrayList;
@@ -44,12 +48,21 @@ public class HotelFragment extends Fragment {
         RecyclerView hotels_rv;
         GridLayoutManager manager;
         HotelAdapter adapter;
+        ProgressBar progressBar;
 
-        hotels_rv = view.findViewById(R.id.hotels);
         manager = new GridLayoutManager(view.getContext(), 2);
         adapter = new HotelAdapter(hotels);
-        hotels_rv.setLayoutManager(manager);
-        hotels_rv.setAdapter(adapter);
+        progressBar = view.findViewById(R.id.progressBar);
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        hotels_rv = view.findViewById(R.id.hotels);
+        new Handler().post(() -> {
+            hotels_rv.setLayoutManager(manager);
+            hotels_rv.setAdapter(adapter);
+            hotels_rv.animate();
+            progressBar.setVisibility(View.INVISIBLE);
+        });
 
         hotels_rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

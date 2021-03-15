@@ -5,9 +5,13 @@ import android.os.Bundle;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+
 import com.jem.fliptabs.FlipTab;
 import com.weeidl.gogodag.adapter.ViewPagerAdapter;
 import com.weeidl.gogodag.model.RecentsData;
@@ -98,11 +102,20 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, Bundle saved){
         flipTab = getActivity().findViewById(R.id.flipTab);
         ViewPager viewPager = getView().findViewById(R.id.viewPager);
-        viewPager.setAdapter(new ViewPagerAdapter(getContext(), new List[]{places, allPlaces}));
-        if (!left){
-            viewPager.setCurrentItem(2);
-            flipTab.selectRightTab(false);
-        }
+        ProgressBar progressBar = view.findViewById(R.id.homeProgressBar);
+
+        progressBar.setVisibility(View.VISIBLE);
+
+
+        new Handler().post(() -> {
+            viewPager.setAdapter(new ViewPagerAdapter(getContext(), new List[]{places, allPlaces}));
+            if (!left){
+                viewPager.setCurrentItem(2);
+                flipTab.selectRightTab(false);
+            }
+            progressBar.setVisibility(View.INVISIBLE);
+        });
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
