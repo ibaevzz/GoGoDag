@@ -15,6 +15,8 @@ import java.util.List;
 public class HotelFragment extends Fragment {
 
     private List hotels;
+    private boolean loading = true;
+    private boolean isLoading = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -22,22 +24,14 @@ public class HotelFragment extends Fragment {
 
         hotels = new ArrayList<RecentsData>();
 
-        hotels.add(new RecentsData("Hotel", "", null, "здесь может быть ваша реклама", 5, R.drawable.hotel11, R.drawable.hotel11));
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 4, R.drawable.hotel12, R.drawable.hotel11));
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 3, R.drawable.hotel21, R.drawable.hotel11));
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 2, R.drawable.hotel22, R.drawable.hotel11));
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 5, R.drawable.hotel11, R.drawable.hotel11));
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 4, R.drawable.hotel12, R.drawable.hotel11));
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 3, R.drawable.hotel21, R.drawable.hotel11));
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 2, R.drawable.hotel22, R.drawable.hotel11));
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 5, R.drawable.hotel11, R.drawable.hotel11));
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 4, R.drawable.hotel12, R.drawable.hotel11));
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 3, R.drawable.hotel21, R.drawable.hotel11));
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 2, R.drawable.hotel22, R.drawable.hotel11));
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 5, R.drawable.hotel11, R.drawable.hotel11));
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 4, R.drawable.hotel12, R.drawable.hotel11));
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 3, R.drawable.hotel21, R.drawable.hotel11));
-        hotels.add(new RecentsData("Hotel", null, null, "здесь может быть ваша реклама", 2, R.drawable.hotel22, R.drawable.hotel11));
+        hotels.add(new RecentsData("Hotel1", "", null, "здесь может быть ваша реклама", 5, R.drawable.hotel11, R.drawable.hotel11));
+        hotels.add(new RecentsData("Hotel2", null, null, "здесь может быть ваша реклама", 4, R.drawable.hotel12, R.drawable.hotel11));
+        hotels.add(new RecentsData("Hotel3", null, null, "здесь может быть ваша реклама", 3, R.drawable.hotel21, R.drawable.hotel11));
+        hotels.add(new RecentsData("Hotel4", null, null, "здесь может быть ваша реклама", 2, R.drawable.hotel22, R.drawable.hotel11));
+        hotels.add(new RecentsData("Hotel5", null, null, "здесь может быть ваша реклама", 5, R.drawable.hotel11, R.drawable.hotel11));
+        hotels.add(new RecentsData("Hotel6", null, null, "здесь может быть ваша реклама", 4, R.drawable.hotel12, R.drawable.hotel11));
+        hotels.add(new RecentsData("Hotel7", null, null, "здесь может быть ваша реклама", 3, R.drawable.hotel21, R.drawable.hotel11));
+        hotels.add(new RecentsData("Hotel8", null, null, "здесь может быть ваша реклама", 2, R.drawable.hotel22, R.drawable.hotel11));
     }
 
     @Override
@@ -53,9 +47,26 @@ public class HotelFragment extends Fragment {
 
         hotels_rv = view.findViewById(R.id.hotels);
         manager = new GridLayoutManager(view.getContext(), 2);
-        adapter = new HotelAdapter(view.getContext(), hotels);
+        adapter = new HotelAdapter(hotels);
         hotels_rv.setLayoutManager(manager);
         hotels_rv.setAdapter(adapter);
+
+        hotels_rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int visibleItemCount = manager.getChildCount();
+                int totalItemCount = manager.getItemCount();
+                int firstVisibleItems = manager.findFirstVisibleItemPosition();
+
+                if (!isLoading) {
+                    if ( (visibleItemCount+firstVisibleItems) >= totalItemCount) {
+                        adapter.addItems(hotels);
+                        isLoading = true;
+                    }
+                }
+            }
+        });
 
     }
 }

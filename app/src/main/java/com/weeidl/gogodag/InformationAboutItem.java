@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.TextView;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.weeidl.gogodag.adapter.ImageViewPagerAdapter;
@@ -16,6 +17,8 @@ import java.util.Objects;
 
 public class InformationAboutItem extends AppCompatActivity {
 
+    private ViewPager image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +26,6 @@ public class InformationAboutItem extends AppCompatActivity {
 
         Intent intent;
         Typeface face;
-        ViewPager image;
         TextView description;
         Toolbar toolbar;
         CollapsingToolbarLayout ctb;
@@ -55,6 +57,11 @@ public class InformationAboutItem extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    public void onBackPressed(){
+         image.setCurrentItem(0);
+         super.onBackPressed();
     }
 
 }

@@ -71,4 +71,19 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
         return places.size();
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    public void addItems(List<RecentsData> data){
+        places.addAll(data);
+        notifyDataSetChanged();
+    }
+
 }

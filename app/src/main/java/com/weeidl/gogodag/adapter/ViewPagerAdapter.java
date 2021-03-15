@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager.widget.PagerAdapter;
@@ -15,6 +16,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     private List places[];
     private Context mContext;
+    private boolean isLoading = false;
 
     public ViewPagerAdapter(Context mContext, List[] places){
         this.mContext = mContext;
@@ -35,6 +37,8 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         RecyclerView recyclerView;
+        GridLayoutManager manager;
+        PlacesAdapter adapter;
 
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -42,10 +46,28 @@ public class ViewPagerAdapter extends PagerAdapter {
                 false);
 
         recyclerView = itemView.findViewById(R.id.rv);
-        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        manager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
+        manager = new GridLayoutManager(mContext, 2);
+        adapter = new PlacesAdapter(mContext, places[position]);
+
         recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(new PlacesAdapter(mContext, places[position]));
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int visibleItemCount = manager.getChildCount();
+                int totalItemCount = manager.getItemCount();
+                int firstVisibleItems = manager.findFirstVisibleItemPosition();
+
+                if (!isLoading) {
+                    if ( (visibleItemCount+firstVisibleItems) >= totalItemCount) {
+                        adapter.addItems(places[position]);
+                        //isLoading = true;
+                    }
+                }
+            }
+        });
 
         container.addView(itemView);
 

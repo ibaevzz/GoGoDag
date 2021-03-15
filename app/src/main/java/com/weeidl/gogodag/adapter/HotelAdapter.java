@@ -1,9 +1,9 @@
 package com.weeidl.gogodag.adapter;
 
 import android.app.ActivityOptions;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,11 +22,9 @@ import java.util.List;
 
 public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> {
 
-    private Context context;
     private List recentsData;
 
-    public HotelAdapter(Context context, List recentsData){
-        this.context = context;
+    public HotelAdapter(List recentsData){
         this.recentsData = recentsData;
     }
 
@@ -62,6 +60,8 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
         stars[4] = holder.itemView.findViewById(R.id.star5);
         hotelData = (RecentsData) recentsData.get(position);
 
+        Log.i("zubai", String.valueOf(hotelData.getStars()));
+
         hotelPic.setImageResource(hotelData.getImageUrls().get(0));
         hotelName.setText(hotelData.getPlaceName());
 
@@ -89,7 +89,20 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
     }
 
     @Override
-    public int getItemCount() {
-        return recentsData.size();
+    public int getItemCount() { return recentsData.size(); }
+
+    public void addItems(List<RecentsData> data){
+        recentsData.addAll(data);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 }

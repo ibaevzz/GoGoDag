@@ -29,6 +29,7 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         view.findViewById(R.id.button_hotel).setOnClickListener(v -> {
             MainActivity.manager.beginTransaction().replace(R.id.container, new HotelFragment()).commit();
+            MainActivity.chipNavigationBar.setItemSelected(R.id.cart, true);
         });
         return view;
     }
@@ -45,6 +46,7 @@ public class HomeFragment extends Fragment {
            places.add(new RecentsData("база данных пока отсутствует", "Indea", "200$", string, null, R.drawable.test_4));
            places.add(new RecentsData("база данных пока отсутствует", "Indea", "200$", string, null, R.drawable.test_5));
            places.add(new RecentsData("база данных пока отсутствует", "Indea", "200$", string, null, R.drawable.test_6));
+           places.add(new RecentsData("база данных пока отсутствует", "Indea", "200$", string, null, R.drawable.test_7));
            places.add(new RecentsData("база данных пока отсутствует", "Indea", "200$", string, null, R.drawable.test_7));
         allPlaces.add(new RecentsData("база данных пока отсутствует", "Indea", "200$", string, null, R.drawable.test_1));
         allPlaces.add(new RecentsData("база данных пока отсутствует", "Indea", "200$", string, null, R.drawable.test_2));
