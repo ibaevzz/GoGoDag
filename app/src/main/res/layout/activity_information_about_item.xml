@@ -24,7 +24,7 @@
                 android:layout_height="300dp"
                 android:id="@+id/placeImg"
                 app:layout_collapseMode="parallax"
-                android:transitionName="frame"/>
+                android:transitionName="frame" />
 
             <androidx.appcompat.widget.Toolbar
                 android:background="@android:color/transparent"

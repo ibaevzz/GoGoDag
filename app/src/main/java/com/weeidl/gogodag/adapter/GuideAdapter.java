@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.weeidl.gogodag.InformationAboutItem;
 import com.weeidl.gogodag.MainActivity;
 import com.weeidl.gogodag.R;
@@ -20,15 +22,15 @@ import com.weeidl.gogodag.model.RecentsData;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> {
+public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.ViewHolder> {
 
     private List recentsData;
 
-    public HotelAdapter(List recentsData){
+    public GuideAdapter(List recentsData){
         this.recentsData = recentsData;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -47,12 +49,13 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ImageView hotelPic;
+
+        ImageView guidePic;
         ImageView[] stars = new ImageView[5];
         TextView hotelName;
         RecentsData hotelData;
 
-        hotelPic = holder.itemView.findViewById(R.id.hotelPic);
+        guidePic = holder.itemView.findViewById(R.id.hotelPic);
         hotelName = holder.itemView.findViewById(R.id.hotelName);
         stars[0] = holder.itemView.findViewById(R.id.star1);
         stars[1] = holder.itemView.findViewById(R.id.star2);
@@ -61,19 +64,20 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
         stars[4] = holder.itemView.findViewById(R.id.star5);
         hotelData = (RecentsData) recentsData.get(position);
 
-        hotelPic.setImageResource(hotelData.getImageUrls().get(0));
+        guidePic.setImageResource(hotelData.getImageUrls().get(0));
         hotelName.setText(hotelData.getPlaceName());
 
         for (int i = hotelData.getStars(); i>0; i--){
             stars[i - 1].setImageResource(R.drawable.ic_baseline_star_24);
         }
 
-        hotelPic.setOnClickListener(v -> {
+        guidePic.setOnClickListener(v -> {
+
             ActivityOptions options;
             Bundle bundle;
             Intent intent;
 
-            options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.activity, new Pair<>(hotelPic, "frame"));
+            options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.activity, new Pair<>(guidePic, "frame"));
             bundle = options.toBundle();
             intent = new Intent(MainActivity.activity, InformationAboutItem.class);
 
@@ -90,11 +94,6 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
     @Override
     public int getItemCount() { return recentsData.size(); }
 
-    public void addItems(List<RecentsData> data){
-        recentsData.addAll(data);
-        notifyDataSetChanged();
-    }
-
     @Override
     public long getItemId(int position) {
         return position;
@@ -104,4 +103,10 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
     public int getItemViewType(int position) {
         return position;
     }
+
+    public void addItems(List<RecentsData> data){
+        recentsData.addAll(data);
+        notifyDataSetChanged();
+    }
+
 }
