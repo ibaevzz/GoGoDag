@@ -1,19 +1,17 @@
 package com.weeidl.gogodag;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.weeidl.gogodag.secrettextview.SecretTextView;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class AnimationScreen extends AppCompatActivity {
+
+    private  FirebaseAuth auth;
 
     LottieAnimationView lottieAnimationView;
     SecretTextView go;
@@ -24,6 +22,14 @@ public class AnimationScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animation_screen);
 
+        auth = FirebaseAuth.getInstance();
+
+        if(auth.getCurrentUser() == null){
+            startActivity(new Intent(this, SignInActivity.class));
+            finish();
+            return;
+        }
+
         go = findViewById(R.id.textView6);
         travel = findViewById(R.id.textView);
         lottieAnimationView = findViewById(R.id.lottie);
@@ -32,9 +38,6 @@ public class AnimationScreen extends AppCompatActivity {
         travel.setDuration(1500);
         go.show();
         travel.show();
-
-//        lottieAnimationView.animate().translationX(-1600).setDuration(200).setStartDelay(1800);
-//        imageView.animate().translationX(-1600).setDuration(200).setStartDelay(1800);
 
         Intent intent = new Intent(this, MainActivity.class);
 

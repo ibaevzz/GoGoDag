@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GoGoDag">
+        <activity android:name=".SignInActivity"></activity>
         <activity
             android:name=".InformationAboutItem"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".AnimationScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
