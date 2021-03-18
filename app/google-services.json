@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1007596453450",
+    "project_id": "gogodag-6f1dd",
+    "storage_bucket": "gogodag-6f1dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007596453450:android:33af07e2ae7e8238f0b0b3",
+        "android_client_info": {
+          "package_name": "com.weeidl.gogodag"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007596453450-ffgvrelh60t2os7v2t9ggb5p8kig5kq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA56JishALQvN4pyG7mTmkGjlbHRt0YOa4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007596453450-ffgvrelh60t2os7v2t9ggb5p8kig5kq1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
