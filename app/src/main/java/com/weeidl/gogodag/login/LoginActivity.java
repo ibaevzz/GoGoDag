@@ -1,4 +1,4 @@
-package com.weeidl.gogodag;
+package com.weeidl.gogodag.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.weeidl.gogodag.MainActivity;
+import com.weeidl.gogodag.R;
 
 public class LoginActivity extends AppCompatActivity {
 

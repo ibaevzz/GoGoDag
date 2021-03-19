@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.weeidl.gogodag.login.SignInActivity;
 import com.weeidl.gogodag.secrettextview.SecretTextView;
 import java.util.Timer;
 import java.util.TimerTask;

@@ -1,8 +1,7 @@
-package com.weeidl.gogodag;
+package com.weeidl.gogodag.fragments;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.core.content.res.ResourcesCompat;
+
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -13,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.jem.fliptabs.FlipTab;
+import com.weeidl.gogodag.MainActivity;
+import com.weeidl.gogodag.R;
 import com.weeidl.gogodag.adapter.ViewPagerAdapter;
 import com.weeidl.gogodag.model.RecentsData;
 import org.jetbrains.annotations.NotNull;

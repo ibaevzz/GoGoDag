@@ -1,4 +1,4 @@
-package com.weeidl.gogodag;
+package com.weeidl.gogodag.fragments;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+
+import com.weeidl.gogodag.R;
 import com.weeidl.gogodag.adapter.HotelAdapter;
 import com.weeidl.gogodag.model.RecentsData;
 import java.util.ArrayList;

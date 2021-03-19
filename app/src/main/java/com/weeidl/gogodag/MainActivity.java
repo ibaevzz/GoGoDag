@@ -6,6 +6,10 @@ import androidx.fragment.app.FragmentManager;
 import android.app.Activity;
 import android.os.Bundle;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+import com.weeidl.gogodag.fragments.GuideFragment;
+import com.weeidl.gogodag.fragments.HomeFragment;
+import com.weeidl.gogodag.fragments.HotelFragment;
+import com.weeidl.gogodag.fragments.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
 
