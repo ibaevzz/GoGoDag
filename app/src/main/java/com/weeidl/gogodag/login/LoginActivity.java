@@ -17,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private EditText email;
     private EditText password;
+    private EditText confirm;
     private Button login;
 
     @Override
@@ -30,10 +31,15 @@ public class LoginActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+        confirm = findViewById(R.id.confirm);
         login = findViewById(R.id.login);
 
         login.setOnClickListener(v -> {
-            regWithEmail(email.getText().toString(), password.getText().toString());
+            if (password.getText().toString().equals(confirm.getText().toString())){
+                regWithEmail(email.getText().toString(), password.getText().toString());
+            } else {
+                Toast.makeText(this, "Passwords mismatch", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
