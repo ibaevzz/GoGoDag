@@ -16,7 +16,6 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     private List places[];
     private Context mContext;
-    private boolean isLoading = false;
 
     public ViewPagerAdapter(Context mContext, List[] places){
         this.mContext = mContext;
@@ -51,23 +50,6 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
-
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                int visibleItemCount = manager.getChildCount();
-                int totalItemCount = manager.getItemCount();
-                int firstVisibleItems = manager.findFirstVisibleItemPosition();
-
-                if (!isLoading) {
-                    if ( (visibleItemCount+firstVisibleItems) >= totalItemCount) {
-                        adapter.addItems(places[position]);
-                        //isLoading = true;
-                    }
-                }
-            }
-        });
 
         container.addView(itemView);
 

@@ -62,23 +62,5 @@ public class GuideFragment extends Fragment {
             guide_rv.setAdapter(adapter);
             progressBar.setVisibility(View.INVISIBLE);
         });
-
-        guide_rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                int visibleItemCount = manager.getChildCount();
-                int totalItemCount = manager.getItemCount();
-                int firstVisibleItems = manager.findFirstVisibleItemPosition();
-
-                if (!isLoading) {
-                    if ( (visibleItemCount+firstVisibleItems) >= totalItemCount) {
-                        adapter.addItems(guide);
-                        isLoading = true;
-                    }
-                }
-            }
-        });
-
     }
 }

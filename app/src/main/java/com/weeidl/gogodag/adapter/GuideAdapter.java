@@ -51,25 +51,15 @@ public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         ImageView guidePic;
-        ImageView[] stars = new ImageView[5];
         TextView hotelName;
         RecentsData hotelData;
 
         guidePic = holder.itemView.findViewById(R.id.hotelPic);
         hotelName = holder.itemView.findViewById(R.id.hotelName);
-        stars[0] = holder.itemView.findViewById(R.id.star1);
-        stars[1] = holder.itemView.findViewById(R.id.star2);
-        stars[2] = holder.itemView.findViewById(R.id.star3);
-        stars[3] = holder.itemView.findViewById(R.id.star4);
-        stars[4] = holder.itemView.findViewById(R.id.star5);
         hotelData = (RecentsData) recentsData.get(position);
 
         guidePic.setImageResource(hotelData.getImageUrls().get(0));
         hotelName.setText(hotelData.getPlaceName());
-
-        for (int i = hotelData.getStars(); i>0; i--){
-            stars[i - 1].setImageResource(R.drawable.ic_baseline_star_24);
-        }
 
         guidePic.setOnClickListener(v -> {
 

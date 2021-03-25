@@ -65,16 +65,6 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = auth.getCurrentUser();
-        if(currentUser == null){
-            signIn();
-        }
-        updateUI(currentUser);
-    }
-
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == SIGN_WITH_GOOGLE) {

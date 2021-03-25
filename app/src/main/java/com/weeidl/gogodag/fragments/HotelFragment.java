@@ -62,22 +62,5 @@ public class HotelFragment extends Fragment {
             progressBar.setVisibility(View.INVISIBLE);
         });
 
-        hotels_rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                int visibleItemCount = manager.getChildCount();
-                int totalItemCount = manager.getItemCount();
-                int firstVisibleItems = manager.findFirstVisibleItemPosition();
-
-                if (!isLoading) {
-                    if ( (visibleItemCount+firstVisibleItems) >= totalItemCount) {
-                        adapter.addItems(hotels);
-                        isLoading = true;
-                    }
-                }
-            }
-        });
-
     }
 }
